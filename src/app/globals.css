@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  /* Mapping Geist Variables to Tailwind */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Core Brand Colors */
+  --color-obsidian: #050505;
+  --color-violet-500: #8B5CF6;
+  --color-cyan-500: #06B6D4;
+  
+  /* Animation Timing */
+  --animate-float: float 3s ease-in-out infinite;
+}
+
+@layer base {
+  * {
+    @apply border-white/10;
+  }
+  
+  body {
+    background-color: var(--color-obsidian);
+    color: #f8fafc;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    /* Forces optimal legibility for variable fonts */
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Sharp Variable Italics for Geist */
+  .italic {
+    font-style: italic;
+    font-variation-settings: "slnt" -10;
+  }
+
+  ::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: #fff;
+  }
+}
+
+/* --- High-End UI Components --- */
+
+.glass-panel {
+  background: linear-gradient(
+    135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    rgba(255, 255, 255, 0.01) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #222;
+  border-radius: 10px;
+  border: 1px solid var(--color-obsidian);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-violet-500);
+}
+
+/* --- Responsive Polish --- */
+
+@media (max-width: 768px) {
+  .glass-panel {
+    backdrop-filter: blur(8px);
+    background: rgba(15, 15, 15, 0.95);
+  }
+  
+  h1 {
+    font-size: 2.75rem !important;
+    letter-spacing: -0.05em !important;
+  }
+  
+  .hide-on-mobile {
+    display: none;
+  }
+}
+
+/* --- Utility Animations --- */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-glow {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+.tracking-tightest {
+  letter-spacing: -0.07em;
+}
